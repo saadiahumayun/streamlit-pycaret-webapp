@@ -6,12 +6,13 @@ from pycaret.regression import load_model, predict_model
 
 st.set_page_config(layout="wide")
 
-def predict(model, features_df):
-    predictions_df = predict_model(estimator=model, data=features_df)
+def predict(loaded_model, features_df):
+    predictions_df = predict_model(estimator=loaded_model, data=features_df)
     predictions = predictions_df['prediction_label'][0]
     return predictions
+loaded_model = pickle.load(open(filename, 'rb'))
 
-model = load_model('new_gb_pipeline')
+#model = load_model('new_gb_pipeline')
 
 from PIL import Image
 image=Image.open('blueberries1.jpg')
@@ -120,6 +121,6 @@ st.table(features_df)
 
 if st.button('Predict'):
     
-    predictions = predict(model, features_df)
+    predictions = predict(loaded_model, features_df)
     
     st.write('Based on feature values, your blueberry yield is '+ str(predictions), ' tonnes.') 
