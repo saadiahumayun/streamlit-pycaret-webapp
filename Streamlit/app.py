@@ -7,10 +7,6 @@ from pycaret.regression import load_model, predict_model
 
 st.set_page_config(layout="wide")
 
-
-#df = df2[['Price', 'Age_08_04', 'KM', 'Fuel_Type', 'Automatic', 'Gears']]
-#loaded_model = pickle.load(open(filename, 'rb'))
-
 def predict(model, features_df):
     predictions_df = predict_model(estimator=model, data=features_df)
     predictions = predictions_df['prediction_label'][0]
