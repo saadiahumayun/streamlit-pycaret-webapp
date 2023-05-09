@@ -5,6 +5,7 @@ import pickle
 from pycaret.regression import load_model, predict_model
 
 st.set_page_config(layout="wide")
+filename = 'new_gb_pipeline.pkl'
 
 def predict(loaded_model, features_df):
     predictions_df = predict_model(estimator=loaded_model, data=features_df)
