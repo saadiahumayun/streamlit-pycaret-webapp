@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-import pycaret.regression as pycaret
 from pycaret.regression import load_model, predict_model
 
 st.set_page_config(layout="wide")
