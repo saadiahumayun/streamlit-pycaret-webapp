@@ -119,6 +119,7 @@ features = {'clonesize':clonesize, 'honeybee': honeybee,
  
 
 features_df = pd.DataFrame([features])
+st.subheader ('Please adjust feature values from the sidebar.')
 st.dataframe(features_df)
 
 if st.button('Predict'):
