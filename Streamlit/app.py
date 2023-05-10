@@ -26,6 +26,7 @@ st.write('This is a web app to predict the yield of wild blueberries based on\
          see the prediction of the regressor.')
 
 st.sidebar.info('This app is created by Saadia Humayun (ERP: 27269), as part of my Machine Learning Project.')
+st.sidebar.success('View Github repository here: https://github.com/saadiahumayun/streamlit-pycaret-webapp')
 
 clonesize = st.sidebar.slider(label = 'Clone Size', min_value = 10.0,
                           max_value = 40.0 ,
@@ -118,7 +119,7 @@ features = {'clonesize':clonesize, 'honeybee': honeybee,
  
 
 features_df = pd.DataFrame([features])
-st.table(features_df)
+st.dataframe(features_df)
 
 if st.button('Predict'):
     
