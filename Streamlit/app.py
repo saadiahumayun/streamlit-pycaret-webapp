@@ -125,7 +125,9 @@ features_df = pd.DataFrame([features])
 st.subheader ('Please adjust feature values from the sidebar.')
 st.dataframe(features_df)
 # Load the LIME explainer model
-explainer = LimeTabularExplainer(training_data.values, feature_names=features_df, mode='regression')
+explainer = LimeTabularExplainer(training_data.values, feature_names=['clonesize','honeybee', 'bumbles', 'andrena', 'osmia', 'MaxOfUpperTRange', 'MinOfUpperTRange',
+                                                                     'AverageOfUpperTRange','MaxOfLowerTRange', 'MinOfLowerTRange','AverageOfLowerTRange',
+                                                                     'RainingDays','AverageRainingDays','fruitset','fruitmass','seeds'], mode='regression')
 
 
 if st.button('Predict'):
