@@ -3,9 +3,12 @@ import pandas as pd
 import numpy as np
 import pickle
 from pycaret.regression import load_model, predict_model
+from lime.lime_tabular import LimeTabularExplainer
 
 st.set_page_config(layout="wide")
 filename = 'new_gb_pipeline.pkl'
+# Load the training data
+training_data = pd.read_csv('train.csv')  # Adjust this to your training data file
 
 def predict(model, features_df):
     predictions_df = predict_model(estimator=model, data=features_df)
@@ -121,9 +124,22 @@ features = {'clonesize':clonesize, 'honeybee': honeybee,
 features_df = pd.DataFrame([features])
 st.subheader ('Please adjust feature values from the sidebar.')
 st.dataframe(features_df)
+# Load the LIME explainer model
+explainer = LimeTabularExplainer(training_data.values, feature_names=features_df, mode='regression')
+
 
 if st.button('Predict'):
     
     predictions = predict(model, features_df)
+    # Generate explanations using LIME
+    explanation = explainer.explain_instance(features_df.values[0], model.predict, num_features=8)
+
+    # Interpret and display the explanation
+    top_features = explanation.as_list()
     
     st.write('Based on feature values, your blueberry yield is '+ str(predictions), ' tonnes.') 
+    
+        st.subheader('LIME Explanation:')
+    for feature in top_features:
+        st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
+
