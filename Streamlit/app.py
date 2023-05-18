@@ -125,7 +125,7 @@ features_df = pd.DataFrame([features])
 st.subheader ('Please adjust feature values from the sidebar.')
 st.dataframe(features_df)
 # Load the LIME explainer model
-explainer = LimeTabularExplainer(training_data.values, feature_names=['id','clonesize','honeybee', 'bumbles', 'andrena', 'osmia', 'MaxOfUpperTRange', 'MinOfUpperTRange',
+explainer = LimeTabularExplainer(training_data.values, feature_names=features['id','clonesize','honeybee', 'bumbles', 'andrena', 'osmia', 'MaxOfUpperTRange', 'MinOfUpperTRange',
                                                                      'AverageOfUpperTRange','MaxOfLowerTRange', 'MinOfLowerTRange','AverageOfLowerTRange',
                                                                      'RainingDays','AverageRainingDays','fruitset','fruitmass','seeds'], mode='regression')
 
@@ -133,13 +133,17 @@ explainer = LimeTabularExplainer(training_data.values, feature_names=['id','clon
 if st.button('Predict'):
     
     predictions = predict(model, features_df)
+    st.write('Based on feature values, your blueberry yield is '+ str(predictions), ' tonnes.')
+    
+ if st.button('Explain'):
+   
     # Generate explanations using LIME
     explanation = explainer.explain_instance(features_df.values[0], model.predict, num_features=8)
 
     # Interpret and display the explanation
     top_features = explanation.as_list()
     
-    st.write('Based on feature values, your blueberry yield is '+ str(predictions), ' tonnes.') 
+     
     
     st.subheader('LIME Explanation:')
     for feature in top_features:
