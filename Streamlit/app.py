@@ -139,7 +139,7 @@ if st.button('Predict'):
     
     st.write('Based on feature values, your blueberry yield is '+ str(predictions), ' tonnes.') 
     
-        st.subheader('LIME Explanation:')
+    st.subheader('LIME Explanation:')
     for feature in top_features:
         st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
 
