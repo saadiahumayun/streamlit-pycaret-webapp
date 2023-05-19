@@ -134,7 +134,6 @@ if st.button('Predict'):
 
 explainer = LimeTabularExplainer(training_data.values, feature_names=training_data.columns.tolist(), mode='regression')
 arr = features_df.to_numpy()
-arr = arr.reshape(1, -1)
 
 def predict_fn(X):
     return model.predict(arr[0])
