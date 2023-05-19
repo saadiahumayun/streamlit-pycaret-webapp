@@ -27,15 +27,14 @@ st.set_page_config(layout="wide")
 # Load the training data
 # training_data= pd.read_csv('train.csv')
 
-def predict(model, features_df):
+def predict(gb_regressor, features_df):
     #predictions_df = predict_model(estimator=model, data=features_df)
-    predictions_df = gbr_regressor.predict(features_df)
+    predictions_df = gb_regressor.predict(features_df)
     predictions = predictions_df[0]
     #predictions = predictions_df['prediction_label'][0]
     return predictions
 #loaded_model = pickle.load(open(filename, 'rb'))
 
-model = gbr_regressor
 #model = load_model('new_gb_pipeline')
 
 from PIL import Image
@@ -147,7 +146,7 @@ st.dataframe(features_df)
 
 if st.button('Predict'):
     
-    predictions = predict(model, features_df)
+    predictions = predict(gb_regressor, features_df)
     st.write('Based on feature values, your blueberry yield is '+ str(predictions), ' tonnes.')
 
 
@@ -160,7 +159,7 @@ arr = features_df.to_numpy()
 
 if st.button('Explain with SHAP'):
     # Initialize the explainer with the trained model
-    explainers = shap.Explainer(model)
+    explainers = shap.Explainer(gb_regressor)
 
     # Get the SHAP values for all observations in the dataset
     shap_values = explainers.shap_values(features_df)  # X is your input data
@@ -172,11 +171,11 @@ if st.button('Explain with SHAP'):
 
 if st.button('Explain with LIME'):
     # Load the LIME explainer model
-    lime = LimeTabular(predict_fn=gbr_regressor.predict, 
+    lime = LimeTabular(predict_fn=predict, 
                    data=features_df, 
                    random_state=1)
     
-    explanation = lime.explain_instance(arr[0], predict_fn, num_features=16)
+    explanation = lime.explain_instance(arr[0], predict_fn=predict, num_features=16)
 
     # Interpret and display the explanation
     top_features = explanation.as_list()
