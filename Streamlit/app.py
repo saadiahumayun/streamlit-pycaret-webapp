@@ -10,7 +10,6 @@ import lime
 import lime.lime_tabular
 from lime.lime_tabular import LimeTabularExplainer
 import shap
-#from pycaret.utils import interpret_model
 
 # %% Load and preprocess data
 data_loader = DataLoader()
