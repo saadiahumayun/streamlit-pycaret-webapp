@@ -172,8 +172,8 @@ if st.button('Explain with SHAP'):
 
 if st.button('Explain with LIME'):
     # Load the LIME explainer model
-    lime = LimeTabular(predict_fn=predict, 
-                   data=features_df, 
+    lime = LimeTabular( 
+                   data=features_df, mode = 'regression',
                    random_state=1)
     
     explanation = lime.explain_instance(arr[0], predict_fn=predict, num_features=16)
