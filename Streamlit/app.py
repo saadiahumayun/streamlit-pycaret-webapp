@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-from pycaret.regression import load_model, predict_model, interpret_model
+from pycaret.regression import *
+from pycaret.regression import load_model, predict_model
 from lime.lime_tabular import LimeTabularExplainer
 
 st.set_page_config(layout="wide")
