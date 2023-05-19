@@ -132,9 +132,7 @@ if st.button('Predict'):
 
 # Load the LIME explainer model
 
-explainer = LimeTabularExplainer(training_data.values, feature_names=['id','clonesize','honeybee', 'bumbles', 'andrena', 'osmia', 'MaxOfUpperTRange', 'MinOfUpperTRange',
-                                                                     'AverageOfUpperTRange','MaxOfLowerTRange', 'MinOfLowerTRange','AverageOfLowerTRange',
-                                                                     'RainingDays','AverageRainingDays','fruitset','fruitmass','seeds'], mode='regression')
+explainer = LimeTabularExplainer(training_data.values, feature_names=training_data.columns.tolist(), mode='regression')
     
 if st.button('Explain'):
    
@@ -149,4 +147,6 @@ if st.button('Explain'):
     st.subheader('LIME Explanation:')
     for feature in top_features:
         st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
-
+#['id','clonesize','honeybee', 'bumbles', 'andrena', 'osmia', 'MaxOfUpperTRange', 'MinOfUpperTRange',
+                                                                     #'AverageOfUpperTRange','MaxOfLowerTRange', 'MinOfLowerTRange','AverageOfLowerTRange',
+                                                                     #'RainingDays','AverageRainingDays','fruitset','fruitmass','seeds']
