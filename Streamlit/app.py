@@ -140,7 +140,7 @@ def predict_fn(X):
 arr = features_df.to_numpy()
 if st.button('Explain'):
 
-    explanation = explainer.explain_instance(arr[0], labels=(1, ), top_labels=None, predict_fn=predict_fn, num_features=16)
+    explanation = explainer.explain_instance(arr, labels=(1, ), top_labels=None, predict_fn=predict_fn, num_features=16)
 
     # Interpret and display the explanation
     top_features = explanation.as_list()
