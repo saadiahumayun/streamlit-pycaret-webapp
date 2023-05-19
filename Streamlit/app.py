@@ -2,8 +2,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-from pycaret.regression import load_model, predict_model
+from pycaret.regression import load_model, predict_model, interpret_model
 from lime.lime_tabular import LimeTabularExplainer
+import shap
 
 st.set_page_config(layout="wide")
 filename = 'new_gb_pipeline.pkl'
@@ -139,8 +140,12 @@ def predict_fn(X):
     return model.predict(arr)
 
 
-if st.button('Explain'):
+if st.button('Explain with SHAP'):
+    
+    interpret_model(model, plot='reason', observation=32)
 
+if st.button('Explain'):
+    
     explanation = explainer.explain_instance(arr[0], predict_fn=predict_fn, num_features=16)
 
     # Interpret and display the explanation
