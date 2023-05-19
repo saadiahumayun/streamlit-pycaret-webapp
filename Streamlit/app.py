@@ -139,8 +139,13 @@ def predict_fn(X):
 
 if st.button('Explain'):
    
+    # Select a single instance from the features_df
+    instance = features_df.iloc[0]
+
+    # Transform features_df into a NumPy array
+    features_array = features_df.values
     # Generate explanations using LIME
-    explanation = explainer.explain_instance(features_df.values[0], predict_fn, num_features=16)
+    explanation = explainer.explain_instance(features_array[0], predict_fn, num_features=16)
 
     # Interpret and display the explanation
     top_features = explanation.as_list()
