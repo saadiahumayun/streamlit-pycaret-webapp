@@ -137,7 +137,7 @@ explainer = LimeTabularExplainer(training_data.values, feature_names=training_da
 if st.button('Explain'):
    
     # Generate explanations using LIME
-    explanation = explainer.explain_instance(features_df.values[0], model.predict, num_features=8)
+    explanation = explainer.explain_instance(features_df.values[0], predict(model, features_df), num_features=8)
 
     # Interpret and display the explanation
     top_features = explanation.as_list()
