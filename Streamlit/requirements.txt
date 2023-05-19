@@ -4,3 +4,4 @@ numpy
 pycaret
 lime
 shap
+interpret
