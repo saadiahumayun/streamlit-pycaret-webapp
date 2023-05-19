@@ -155,7 +155,7 @@ if st.button('Explain with SHAP'):
 
 if st.button('Explain with LIME'):
     
-    explanation = explainer.explain_instance(arr[0], predict_fn, num_features=15)
+    explanation = explainer.explain_instance(arr[0], predict_fn, num_features=16)
 
     # Interpret and display the explanation
     top_features = explanation.as_list()
