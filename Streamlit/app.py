@@ -133,12 +133,13 @@ if st.button('Predict'):
 # Load the LIME explainer model
 
 explainer = LimeTabularExplainer(training_data.values, feature_names=training_data.columns.tolist(), mode='regression')
-
-def predict_fn(X):
-    return model.predict(features_df)
-
 arr = features_df.to_numpy()
 arr = arr.reshape(1, -1)
+
+def predict_fn(X):
+    return model.predict(arr[0])
+
+
 if st.button('Explain'):
 
     explanation = explainer.explain_instance(arr[0], predict_fn=predict_fn, num_features=16)
