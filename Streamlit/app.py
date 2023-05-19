@@ -135,7 +135,7 @@ if st.button('Predict'):
 explainer = LimeTabularExplainer(training_data.values, feature_names=training_data.columns.tolist(), mode='regression')
 
 def predict_fn(X):
-    return model.predict(training_data)
+    return model.predict(features_df)
 
 if st.button('Explain'):
    
