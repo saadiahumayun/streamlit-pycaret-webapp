@@ -2,23 +2,42 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+from utils import DataLoader
+from sklearn.ensemble import GradientBoostingRegressor
 from pycaret.regression import load_model, predict_model
 from lime.lime_tabular import LimeTabularExplainer
 import shap
+from interpret import show
 #from pycaret.utils import interpret_model
 
+# %% Load and preprocess data
+data_loader = DataLoader()
+data_loader.load_dataset()
+# Split the data for evaluation
+X_train, X_test, y_train, y_test = data_loader.get_data_split()
+
+# Create and train the Gradient Boosting Regressor
+gb_regressor = GradientBoostingRegressor()
+gb_regressor.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = gb_regressor.predict(X_test)
+
 st.set_page_config(layout="wide")
-filename = 'new_gb_pipeline.pkl'
+#filename = 'new_gb_pipeline.pkl'
 # Load the training data
-training_data= pd.read_csv('train.csv')
+# training_data= pd.read_csv('train.csv')
 
 def predict(model, features_df):
-    predictions_df = predict_model(estimator=model, data=features_df)
-    predictions = predictions_df['prediction_label'][0]
+    #predictions_df = predict_model(estimator=model, data=features_df)
+    predictions_df = gbr_regressor.predict(features_df)
+    predictions = predictions_df[0]
+    #predictions = predictions_df['prediction_label'][0]
     return predictions
 #loaded_model = pickle.load(open(filename, 'rb'))
 
-model = load_model('new_gb_pipeline')
+model = gbr_regressor
+#model = load_model('new_gb_pipeline')
 
 from PIL import Image
 image=Image.open('blueberries1.jpg')
@@ -132,13 +151,12 @@ if st.button('Predict'):
     predictions = predict(model, features_df)
     st.write('Based on feature values, your blueberry yield is '+ str(predictions), ' tonnes.')
 
-# Load the LIME explainer model
 
-explainer = LimeTabularExplainer(training_data.values, feature_names=training_data.columns.tolist(), mode='regression')
+#explainer = LimeTabularExplainer(training_data.values, feature_names=training_data.columns.tolist(), mode='regression')
 arr = features_df.to_numpy()
 
-def predict_fn(arr):
-    return predictions
+#def predict_fn(arr):
+    #return predictions
 
 
 if st.button('Explain with SHAP'):
@@ -146,16 +164,20 @@ if st.button('Explain with SHAP'):
     explainers = shap.Explainer(model)
 
     # Get the SHAP values for all observations in the dataset
-    shap_values = explainers.shap_values(training_data)  # X is your input data
+    shap_values = explainers.shap_values(features_df)  # X is your input data
 
     # Visualize the SHAP values
-    shap.summary_plot(shap_values, arr)  # X is your input data
+    shap.summary_plot(shap_values, features_df)  # X is your input data
     
-    #interpret_model(model, plot='reason', observation=32)
+    
 
 if st.button('Explain with LIME'):
+    # Load the LIME explainer model
+    lime = LimeTabular(predict_fn=gbr_regressor.predict, 
+                   data=features_df, 
+                   random_state=1)
     
-    explanation = explainer.explain_instance(arr[0], predict_fn, num_features=16)
+    explanation = lime.explain_instance(arr[0], predict_fn, num_features=16)
 
     # Interpret and display the explanation
     top_features = explanation.as_list()
