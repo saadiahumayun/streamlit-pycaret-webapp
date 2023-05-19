@@ -176,7 +176,7 @@ if st.button('Explain with LIME'):
                    feature_names= features_df.columns.tolist(), mode = 'regression',
                    random_state=None)
     
-    explanation = lime.explain_instance(arr[0], predict_fn=predict, num_features=16)
+    explanation = lime.explain_instance(arr[0], predict_fn=lambda x: predict(x, gb_regressor), num_features=16)
 
     # Interpret and display the explanation
     top_features = explanation.as_list()
