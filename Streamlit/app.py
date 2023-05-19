@@ -151,8 +151,9 @@ if st.button('Predict'):
     st.write('Based on feature values, your blueberry yield is '+ str(predictions), ' tonnes.')
 
 
-#explainer = LimeTabularExplainer(training_data.values, feature_names=training_data.columns.tolist(), mode='regression')
 arr = features_df.to_numpy()
+arr = np.reshape(arr, (1, -1))
+
 
 #def predict_fn(arr):
     #return predictions
