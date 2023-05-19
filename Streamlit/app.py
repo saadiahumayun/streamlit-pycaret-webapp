@@ -136,7 +136,6 @@ explainer = LimeTabularExplainer(training_data.values, feature_names=training_da
 
 def predict_fn(X):
     return model.predict(features_df)
-st.write(arr[0])
 
 if st.button('Explain'):
     arr = features_df.to_numpy()
@@ -151,6 +150,8 @@ if st.button('Explain'):
     st.subheader('LIME Explanation:')
     for feature in top_features:
         st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
-#['id','clonesize','honeybee', 'bumbles', 'andrena', 'osmia', 'MaxOfUpperTRange', 'MinOfUpperTRange',
+st.write(arr[0])
+
+        #['id','clonesize','honeybee', 'bumbles', 'andrena', 'osmia', 'MaxOfUpperTRange', 'MinOfUpperTRange',
                                                                      #'AverageOfUpperTRange','MaxOfLowerTRange', 'MinOfLowerTRange','AverageOfLowerTRange',
                                                                      #'RainingDays','AverageRainingDays','fruitset','fruitmass','seeds']
