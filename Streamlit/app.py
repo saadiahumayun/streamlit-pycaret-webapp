@@ -33,7 +33,7 @@ def predict(features_df, gb_regressor):
     predictions_df = gb_regressor.predict(features_df)
     predictions = predictions_df[0]
     #predictions = predictions_df['prediction_label'][0]
-    return predictions
+    return predictions.flatten()
 #loaded_model = pickle.load(open(filename, 'rb'))
 
 #model = load_model('new_gb_pipeline')
@@ -172,11 +172,11 @@ if st.button('Explain with SHAP'):
 
 if st.button('Explain with LIME'):
     # Load the LIME explainer model
-    lime = LimeTabularExplainer(X_train.values, 
+    lime = LimeTabularExplainer(features_df.values, 
                    feature_names= features_df.columns.tolist(), mode = 'regression',
                    random_state=None)
     
-    explanation = lime.explain_instance(arr[0], predict_fn=lambda x: predict(x, gb_regressor), num_features=16)
+    explanation = lime.explain_instance(arr[0], predict_fn=predict, num_features=16)
 
     # Interpret and display the explanation
     top_features = explanation.as_list()
