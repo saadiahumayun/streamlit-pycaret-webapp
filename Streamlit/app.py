@@ -8,7 +8,7 @@ from lime.lime_tabular import LimeTabularExplainer
 st.set_page_config(layout="wide")
 filename = 'new_gb_pipeline.pkl'
 # Load the training data
-training_data = pd.read_csv('train.csv')  # Adjust this to your training data file
+training_data = pd.read_csv('train1.csv')  # Adjust this to your training data file
 
 def predict(model, features_df):
     predictions_df = predict_model(estimator=model, data=features_df)
