@@ -6,6 +6,8 @@ from utils import DataLoader
 from sklearn.ensemble import GradientBoostingRegressor
 from pycaret.regression import load_model, predict_model
 from interpret.blackbox import LimeTabular
+import lime
+import lime.lime_tabular
 from lime.lime_tabular import LimeTabularExplainer
 import shap
 #from pycaret.utils import interpret_model
