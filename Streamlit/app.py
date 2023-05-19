@@ -4,7 +4,6 @@ import numpy as np
 import pickle
 from pycaret.regression import load_model, predict_model, interpret_model
 from lime.lime_tabular import LimeTabularExplainer
-import shap
 
 st.set_page_config(layout="wide")
 filename = 'new_gb_pipeline.pkl'
