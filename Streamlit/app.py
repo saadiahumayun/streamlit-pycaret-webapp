@@ -173,8 +173,8 @@ if st.button('Explain with SHAP'):
 
 if st.button('Explain with LIME'):
     # Load the LIME explainer model
-    def predict(features_df.values):
-        return np.array(list(zip(gb_regressor.predict(features_df.values))))
+    def predict(features_df):
+        return np.array(list(zip(gb_regressor.predict(features_df))))
     
 
 
