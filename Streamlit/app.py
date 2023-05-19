@@ -4,6 +4,7 @@ import numpy as np
 import pickle
 from pycaret.regression import load_model, predict_model
 from lime.lime_tabular import LimeTabularExplainer
+import shap
 #from pycaret.utils import interpret_model
 
 st.set_page_config(layout="wide")
