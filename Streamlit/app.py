@@ -138,9 +138,12 @@ def predict_fn(X):
     return model.predict(features_df)
 
 if st.button('Explain'):
+    
+    # Convert features_df.values[0] to a DataFrame with a single row
+    instance = pd.DataFrame(features_df.values[0], columns=features_df.columns)
    
     # Generate explanations using LIME
-    explanation = explainer.explain_instance(features_df.values[0], predict_fn, num_features=8)
+    explanation = explainer.explain_instance(instance.values[0], predict_fn, num_features=8)
 
     # Interpret and display the explanation
     top_features = explanation.as_list()
