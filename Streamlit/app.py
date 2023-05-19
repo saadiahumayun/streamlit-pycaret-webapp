@@ -139,8 +139,9 @@ def predict_fn(X):
 st.write(features_df.values[0])
 
 if st.button('Explain'):
-   
-    explanation = explainer.explain_instance(features_df.values[0], labels=(1, ), top_labels=None, predict_fn=predict_fn, num_features=16)
+    arr = features_df.to_numpy()
+
+    explanation = explainer.explain_instance(arr[0], labels=(1, ), top_labels=None, predict_fn=predict_fn, num_features=16)
 
     # Interpret and display the explanation
     top_features = explanation.as_list()
