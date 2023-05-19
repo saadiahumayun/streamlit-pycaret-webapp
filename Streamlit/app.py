@@ -4,7 +4,7 @@ import numpy as np
 import pickle
 from pycaret.regression import load_model, predict_model
 from lime.lime_tabular import LimeTabularExplainer
-from pycaret.utils import interpret_model
+#from pycaret.utils import interpret_model
 
 st.set_page_config(layout="wide")
 filename = 'new_gb_pipeline.pkl'
@@ -141,8 +141,16 @@ def predict_fn(arr):
 
 
 if st.button('Explain with SHAP'):
+    # Initialize the explainer with the trained model
+    explainers = shap.Explainer(model)
+
+    # Get the SHAP values for all observations in the dataset
+    shap_values = explainers.shap_values(training_data)  # X is your input data
+
+    # Visualize the SHAP values
+    shap.summary_plot(shap_values, arr)  # X is your input data
     
-    interpret_model(model, plot='reason', observation=32)
+    #interpret_model(model, plot='reason', observation=32)
 
 if st.button('Explain with LIME'):
     
@@ -150,8 +158,6 @@ if st.button('Explain with LIME'):
 
     # Interpret and display the explanation
     top_features = explanation.as_list()
-    
-     
     
     st.subheader('LIME Explanation:')
     for feature in top_features:
