@@ -136,7 +136,7 @@ explainer = LimeTabularExplainer(training_data.values, feature_names=training_da
 arr = features_df.to_numpy()
 
 def predict_fn(X):
-    return model.predict(arr[0])
+    return model.predict(arr)
 
 
 if st.button('Explain'):
