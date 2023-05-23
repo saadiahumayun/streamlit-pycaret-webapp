@@ -170,8 +170,8 @@ if st.button('Explain with SHAP'):
     # %% Investigating the values (classification problem)
     # class 0 = contribution to class 1
     # class 1 = contribution to class 2
-    print(shap_values[0].shape)
-    #shap_values
+    print(shap_values[1].shape)
+    shap_values
 
     # %% >> Visualize local predictions
     shap.initjs()
@@ -188,7 +188,7 @@ if st.button('Explain with SHAP'):
     # %% >> Visualize global features
     # Feature summary
     #shap.plots.bar(shap_values)
-    shap.summary_plot(shap_values = shap_values[0],features = features_display, plot_type="bar")
+    shap.summary_plot(shap_values = shap_values, features = features_display, plot_type="bar")
 
 
     
