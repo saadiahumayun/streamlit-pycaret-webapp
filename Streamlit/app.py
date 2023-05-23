@@ -166,7 +166,6 @@ st.button('Explain with SHAP')
 explainer = shap.TreeExplainer(gb_regressor)
 # Calculate shapley values for test data
 shap_values = explainer.shap_values(features_df.iloc[0])
-features_df.iloc[0]
 
 # %% Investigating the values (classification problem)
 # class 0 = contribution to class 1
@@ -177,7 +176,7 @@ shap_values
 # %% >> Visualize local predictions
 shap.initjs()
 # Force plot
-prediction = gb_regressor.predict(features_df.iloc[0])
+prediction = predict(features_df)
 print(f"The GB predicted: {prediction}")
 shap.force_plot(explainer.expected_value[1],
                 shap_values[1],
