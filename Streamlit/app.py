@@ -161,15 +161,23 @@ arr = features_df.to_numpy()
 
 
 if st.button('Explain with SHAP'):
-    # Initialize the explainer with the trained model
-    explainers = shap.Explainer(gb_regressor)
+    @st.cache
 
-    # Get the SHAP values for all observations in the dataset
-    shap_values = explainers.shap_values(features_df)  # X is your input data
+    def st_shap(plot, height=None):
+        shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
+        components.html(shap_html, height=height)
 
-    # Visualize the SHAP values
-    shap.summary_plot(shap_values, features_df)  # X is your input data
-    
+    st.title("SHAP in Streamlit")
+    # explain the model's predictions using SHAP
+    # (same syntax works for LightGBM, CatBoost, scikit-learn and spark models)
+    explainer = shap.TreeExplainer(gb_regressor)
+    shap_values = explainer.shap_values(X_train)
+
+    # visualize the first prediction's explanation (use matplotlib=True to avoid Javascript)
+    st_shap(shap.force_plot(explainer.expected_value, shap_values[0,:], features_df.iloc[0,:]))
+
+    # visualize the training set predictions
+    st_shap(shap.force_plot(explainer.expected_value, shap_values, X_train), 400)
     
 
 if st.button('Explain with LIME'):
