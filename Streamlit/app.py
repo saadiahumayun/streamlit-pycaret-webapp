@@ -10,7 +10,7 @@ import lime
 import lime.lime_tabular
 from lime.lime_tabular import LimeTabularExplainer
 import shap
-import matplotlib
+from matplotlib import pyplot as plt
 
 # %% Load and preprocess data
 data_loader = DataLoader()
