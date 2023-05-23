@@ -195,6 +195,7 @@ if st.button('Explain with LIME'):
     top_features = exp.as_list()
     
     st.subheader('LIME Explanation:')
+    show(exp)
     for feature in top_features:
         st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
 
