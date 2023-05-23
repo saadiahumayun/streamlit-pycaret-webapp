@@ -194,7 +194,9 @@ if st.button('Explain with LIME'):
     for feature in top_features:
         st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
         
-    exp.as_pyplot_figure()
+    # Display explainer HTML object
+    components.html(exp.as_html(), height=800)
+    #exp.as_pyplot_figure()
 
         
   
