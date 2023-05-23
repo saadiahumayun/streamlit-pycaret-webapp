@@ -174,7 +174,7 @@ if st.button('Explain with LIME'):
     # Load the LIME explainer model
     
     def predict_row(input_data):
-        return gb_regressor.predict(input_data.reshape(1, -1))
+        return gb_regressor.predict(input_data)
 
     explainer = lime.lime_tabular.LimeTabularExplainer(features_df.values,  
         mode='regression')
