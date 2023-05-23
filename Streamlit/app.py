@@ -181,7 +181,7 @@ if st.button('Explain with SHAP'):
     print(f"The GB predicted: {prediction}")
     expected_value = explainer.expected_value
     features_display = features_df.columns.tolist()
-    shap.decision_plot(expected_value, shap_values, features_display)
+    st_shap(shap.decision_plot(expected_value, shap_value, features_display))
     #shap.force_plot(explainer.expected_value[0],
                # shap_values[0],
                 #features_df.iloc[0]) # for values
