@@ -10,6 +10,7 @@ import lime
 import lime.lime_tabular
 from lime.lime_tabular import LimeTabularExplainer
 import shap
+import streamlit.components.v1 as components
 from matplotlib import pyplot as plt
 
 # %% Load and preprocess data
