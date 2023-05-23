@@ -6,3 +6,4 @@ lime
 shap
 interpret
 plotly
+streamlit-shap
