@@ -11,6 +11,7 @@ import lime.lime_tabular
 from lime.lime_tabular import LimeTabularExplainer
 import shap
 import streamlit.components.v1 as components
+from streamlit_shap import st_shap
 
 # %% Load and preprocess data
 data_loader = DataLoader()
@@ -188,8 +189,8 @@ if st.button('Explain with SHAP'):
     # %% >> Visualize global features
     # Feature summary
     #shap.plots.bar(shap_values)
-    shap_value = shap.TreeExplainer(gb_regressor).shap_values(X_train)
-    shap.summary_plot(shap_value, X_train)
+    st_shap(shap_value = shap.TreeExplainer(gb_regressor).shap_values(X_train))
+    st_shap(shap.summary_plot(shap_value, X_train))
 
 
     
