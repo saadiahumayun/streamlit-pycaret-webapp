@@ -171,7 +171,7 @@ if st.button('Explain with SHAP'):
     # class 0 = contribution to class 1
     # class 1 = contribution to class 2
     print(shap_values[0].shape)
-    shap_values
+    #shap_values
 
     # %% >> Visualize local predictions
     shap.initjs()
