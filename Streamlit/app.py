@@ -195,8 +195,8 @@ if st.button('Explain with LIME'):
         st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
         
     # Extract feature names and feature importance values from the explanation
-    feature_names = [x[0] for x in top_features]
-    feature_importance = [x[1] for x in top_features]
+    feature_names = [x[0] for x in exp.as_list()]
+    feature_importance = [x[1] for x in exp.as_list()]
 
     # Create a bar plot using Plotly to visualize feature importance
     fig = go.Figure()
