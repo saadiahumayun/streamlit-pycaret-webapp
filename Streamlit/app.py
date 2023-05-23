@@ -159,7 +159,25 @@ arr = features_df.to_numpy()
     #return predictions
 
 
-#if st.button('Explain with SHAP'):
+if st.button('Explain with SHAP'):
+    # Select an instance for explanation
+    instance_index = st.sidebar.selectbox(
+        "Select an instance", range(len(data))
+    )
+
+    # Generate SHAP values
+    shap_values = explainer(X_train)
+
+    # Visualize the SHAP values
+    st.set_option('deprecation.showPyplotGlobalUse', False)  # Disable a warning
+    shap.summary_plot(shap_values, X_data)
+
+    # Display individual feature importance
+    st.subheader("Individual Feature Importance")
+    feature_index = st.selectbox(
+        "Select a feature", range(len(features_df.columns))
+    )
+    shap.plots.scatter(shap_values[:, feature_index], color=shap_values)
 
     
     
