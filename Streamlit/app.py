@@ -186,13 +186,7 @@ if st.button('Explain with LIME'):
     exp = explainer.explain_instance(features_df.iloc[0].values, 
                                      predict_row, num_features=16)
     
-    #lime = LimeTabularExplainer(features_df.values, 
-                   #feature_names= features_df.columns.tolist(), mode = 'regression',
-                   #random_state=None)
     
-    #explanation = lime.explain_instance(arr[0], predict_fn=lambda x: predict(x, gb_regressor), num_features=16)
-
-    # Interpret and display the explanation
     top_features = exp.as_list()
     
     st.subheader('LIME Explanation:')
@@ -200,7 +194,6 @@ if st.button('Explain with LIME'):
     for feature in top_features:
         st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
         
-    show (exp)
 
         #['id','clonesize','honeybee', 'bumbles', 'andrena', 'osmia', 'MaxOfUpperTRange', 'MinOfUpperTRange',
                                                                      #'AverageOfUpperTRange','MaxOfLowerTRange', 'MinOfLowerTRange','AverageOfLowerTRange',
