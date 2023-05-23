@@ -178,9 +178,11 @@ if st.button('Explain with SHAP'):
     # Force plot
     prediction = predict(features_df)
     print(f"The GB predicted: {prediction}")
-    shap.force_plot(explainer.expected_value[0],
-                shap_values[0],
-                features_df.iloc[0]) # for values
+    expected_value = explainer.expected_value
+    shap.decision_plot(expected_value, shap_values, features_display)
+    #shap.force_plot(explainer.expected_value[0],
+               # shap_values[0],
+                #features_df.iloc[0]) # for values
 
     # %% >> Visualize global features
     # Feature summary
