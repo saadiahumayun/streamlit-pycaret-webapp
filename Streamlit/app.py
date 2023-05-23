@@ -10,7 +10,7 @@ import lime
 import lime.lime_tabular
 from lime.lime_tabular import LimeTabularExplainer
 import shap
-import plotly.graph_objects as go
+import matplotlib
 
 # %% Load and preprocess data
 data_loader = DataLoader()
@@ -194,25 +194,9 @@ if st.button('Explain with LIME'):
     for feature in top_features:
         st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
         
-    # Extract feature names and feature importance values from the explanation
-    feature_names = [x[0] for x in exp.as_list()]
-    feature_importance = [x[1] for x in exp.as_list()]
-
-    # Create a bar plot using Plotly to visualize feature importance
-    fig = go.Figure()
-    fig.add_trace(go.Bar(
-    x=feature_importance,
-    y=feature_names,
-    orientation='h'
-    ))
-    fig.update_layout(
-    title='Lime Explanation',
-    xaxis_title='Feature Importance',
-    yaxis_title='Features'
-    )
-
-    # Display the plot in Streamlit app
-    st.plotly_chart(fig) 
+    exp.as_pyplot_figure()
+        
+  
         
 
     
