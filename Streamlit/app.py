@@ -194,7 +194,8 @@ if st.button('Explain with LIME'):
     for feature in top_features:
         st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
         
-    exp.as_pyplot_figure()
+    exp.show_in_notebook(show_table=True)
+
         
   
         
