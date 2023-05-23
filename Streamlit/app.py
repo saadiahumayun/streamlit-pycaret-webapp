@@ -159,22 +159,33 @@ arr = features_df.to_numpy()
     #return predictions
 
 
-if st.button('Explain with SHAP'):
+st.button('Explain with SHAP'):
     
 
-    # Generate SHAP values
-    shap_values = explainer(X_train)
+    # %% Create SHAP explainer
+explainer = shap.TreeExplainer(gb_regressor)
+# Calculate shapley values for test data
+shap_values = explainer.shap_values(features_df.iloc[0])
+features_df.iloc[0]
 
-    # Visualize the SHAP values
-    st.set_option('deprecation.showPyplotGlobalUse', False)  # Disable a warning
-    shap.summary_plot(shap_values, X_data)
+# %% Investigating the values (classification problem)
+# class 0 = contribution to class 1
+# class 1 = contribution to class 2
+print(shap_values[0].shape)
+shap_values
 
-    # Display individual feature importance
-    st.subheader("Individual Feature Importance")
-    feature_index = st.selectbox(
-        "Select a feature", range(len(features_df.columns))
-    )
-    shap.plots.scatter(shap_values[:, feature_index], color=shap_values)
+# %% >> Visualize local predictions
+shap.initjs()
+# Force plot
+prediction = gb_regressor.predict(features_df.iloc[0])
+print(f"The GB predicted: {prediction}")
+shap.force_plot(explainer.expected_value[1],
+                shap_values[1],
+                features_df.iloc[0]) # for values
+
+# %% >> Visualize global features
+# Feature summary
+shap.summary_plot(shap_values, X_train)
 
     
     
