@@ -170,7 +170,7 @@ if st.button('Explain with LIME'):
     def predict_row(input_data):
         return gb_regressor.predict(input_data)
 
-    explainer = lime.lime_tabular.LimeTabularExplainer(features_df.values,  
+    explainer = lime.lime_tabular.LimeTabularExplainer(X_train.values,  
         mode='regression')
 
 
