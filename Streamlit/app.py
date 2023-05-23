@@ -173,7 +173,8 @@ if st.button('Explain with SHAP'):
 if st.button('Explain with LIME'):
     # Load the LIME explainer model
     
-
+    def predict_row(input_data):
+        return gb_regressor.predict(input_data.reshape(1, -1))
 
     explainer = lime.lime_tabular.LimeTabularExplainer(features_df.values,  
         mode='regression')
@@ -181,8 +182,8 @@ if st.button('Explain with LIME'):
 
     # asking for explanation for LIME model
     i=0
-    exp = explainer.explain_instance(features_df.iloc[0].astype(float).values, 
-                                     predict, num_features=16)
+    exp = explainer.explain_instance(features_df.iloc[0].values, 
+                                     predict_row, num_features=16)
     
     #lime = LimeTabularExplainer(features_df.values, 
                    #feature_names= features_df.columns.tolist(), mode = 'regression',
