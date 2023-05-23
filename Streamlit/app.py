@@ -188,7 +188,8 @@ if st.button('Explain with SHAP'):
     # %% >> Visualize global features
     # Feature summary
     #shap.plots.bar(shap_values)
-    shap.summary_plot(shap_values = shap_values[1], features = features_display, plot_type="bar")
+    shap_value = shap.TreeExplainer(gb_regressor).shap_values(X_train)
+    shap.summary_plot(shap_value, X_train)
 
 
     
