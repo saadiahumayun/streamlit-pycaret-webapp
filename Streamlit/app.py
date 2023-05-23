@@ -160,10 +160,7 @@ arr = features_df.to_numpy()
 
 
 if st.button('Explain with SHAP'):
-    # Select an instance for explanation
-    instance_index = st.sidebar.selectbox(
-        "Select an instance", range(len(data))
-    )
+    
 
     # Generate SHAP values
     shap_values = explainer(X_train)
