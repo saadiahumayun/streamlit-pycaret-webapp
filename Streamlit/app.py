@@ -194,25 +194,25 @@ if st.button('Explain with LIME'):
     for feature in top_features:
         st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
         
-   # Extract feature names and feature importance values from the explanation
-   feature_names = [x[0] for x in top_features]
-   feature_importance = [x[1] for x in top_features]
+    # Extract feature names and feature importance values from the explanation
+    feature_names = [x[0] for x in top_features]
+    feature_importance = [x[1] for x in top_features]
 
     # Create a bar plot using Plotly to visualize feature importance
-   fig = go.Figure()
-   fig.add_trace(go.Bar(
-   x=feature_importance,
-   y=feature_names,
-   orientation='h'
-   ))
-   fig.update_layout(
-   title='Lime Explanation',
-   xaxis_title='Feature Importance',
-   yaxis_title='Features'
-   )
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+    x=feature_importance,
+    y=feature_names,
+    orientation='h'
+    ))
+    fig.update_layout(
+    title='Lime Explanation',
+    xaxis_title='Feature Importance',
+    yaxis_title='Features'
+    )
 
-   # Display the plot in Streamlit app
-   st.plotly_chart(fig) 
+    # Display the plot in Streamlit app
+    st.plotly_chart(fig) 
         
 
     
