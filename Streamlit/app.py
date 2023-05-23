@@ -190,7 +190,7 @@ if st.button('Explain with SHAP'):
     # Feature summary
     
     shap_values = shap.TreeExplainer(gb_regressor).shap_values(X_test)
-    st_shap(shap.plots.bar(shap_values[0]))
+    #st_shap(shap.plots.bar(shap_values[0]))
     st_shap(shap.summary_plot( shap_values, X_test))
 
 
