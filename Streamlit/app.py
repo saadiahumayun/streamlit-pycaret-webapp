@@ -161,7 +161,6 @@ arr = features_df.to_numpy()
 
 
 if st.button('Explain with SHAP'):
-    @st.cache
 
     def st_shap(plot, height=None):
         shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
