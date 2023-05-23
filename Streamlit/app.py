@@ -29,7 +29,7 @@ st.set_page_config(layout="wide")
 # Load the training data
 # training_data= pd.read_csv('train.csv')
 
-def predict(features_df, gb_regressor):
+def predict(data):
     #predictions_df = predict_model(estimator=model, data=features_df)
     predictions_df = gb_regressor.predict(features_df)
     predictions = predictions_df[0]
@@ -148,7 +148,7 @@ st.dataframe(features_df)
 
 if st.button('Predict'):
     
-    predictions = predict(features_df, gb_regressor)
+    predictions = predict(features_df)
     st.write('Based on feature values, your blueberry yield is '+ str(predictions), ' tonnes.')
 
 
@@ -181,7 +181,7 @@ if st.button('Explain with LIME'):
 
     # asking for explanation for LIME model
     i=0
-    exp = explainer.explain_instance(features_df.loc[i,].astype(float).values, predict_fn=predict, num_features=16)
+    exp = explainer.explain_instance(features_df.loc[i,].astype(float).values, predict, num_features=16)
     
     #lime = LimeTabularExplainer(features_df.values, 
                    #feature_names= features_df.columns.tolist(), mode = 'regression',
