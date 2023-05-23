@@ -181,7 +181,7 @@ if st.button('Explain with LIME'):
 
     # asking for explanation for LIME model
     i=0
-    exp = explainer.explain_instance(features_df.loc[i,].astype(float).values, 
+    exp = explainer.explain_instance(features_df.iloc[0].astype(float).values, 
                                      predict, num_features=16)
     
     #lime = LimeTabularExplainer(features_df.values, 
