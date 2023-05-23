@@ -159,32 +159,32 @@ arr = features_df.to_numpy()
     #return predictions
 
 
-st.button('Explain with SHAP')
+if st.button('Explain with SHAP'):
     
 
     # %% Create SHAP explainer
-explainer = shap.TreeExplainer(gb_regressor)
-# Calculate shapley values for test data
-shap_values = explainer.shap_values(features_df.iloc[0])
+    explainer = shap.TreeExplainer(gb_regressor)
+    # Calculate shapley values for test data
+    shap_values = explainer.shap_values(features_df.iloc[0])
 
-# %% Investigating the values (classification problem)
-# class 0 = contribution to class 1
-# class 1 = contribution to class 2
-print(shap_values[0].shape)
-shap_values
+    # %% Investigating the values (classification problem)
+    # class 0 = contribution to class 1
+    # class 1 = contribution to class 2
+    print(shap_values[0].shape)
+    shap_values
 
-# %% >> Visualize local predictions
-shap.initjs()
-# Force plot
-prediction = predict(features_df)
-print(f"The GB predicted: {prediction}")
-shap.force_plot(explainer.expected_value[1],
-                shap_values[1],
+    # %% >> Visualize local predictions
+    shap.initjs()
+    # Force plot
+    prediction = predict(features_df)
+    print(f"The GB predicted: {prediction}")
+    shap.force_plot(explainer.expected_value[0],
+                shap_values[0],
                 features_df.iloc[0]) # for values
 
-# %% >> Visualize global features
-# Feature summary
-shap.summary_plot(shap_values, X_train)
+    # %% >> Visualize global features
+    # Feature summary
+    shap.summary_plot(shap_values, X_train)
 
     
     
