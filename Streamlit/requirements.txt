@@ -5,3 +5,4 @@ pycaret
 lime
 shap
 interpret
+plotly
