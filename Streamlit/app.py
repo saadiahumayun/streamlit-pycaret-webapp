@@ -184,7 +184,8 @@ if st.button('Explain with SHAP'):
 
     # %% >> Visualize global features
     # Feature summary
-    shap.summary_plot(explainer, X_train)
+    shap.plots.bar(shap_values[0])
+    #shap.summary_plot(explainer, X_train)
 
     
     
