@@ -10,7 +10,7 @@ import lime
 import lime.lime_tabular
 from lime.lime_tabular import LimeTabularExplainer
 import shap
-from interpret import show
+import plotly.graph_objects as go
 
 # %% Load and preprocess data
 data_loader = DataLoader()
