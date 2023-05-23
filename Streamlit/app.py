@@ -153,8 +153,6 @@ if st.button('Predict'):
 
 
 arr = features_df.to_numpy()
-arr = np.reshape(arr, (1, -1))
-
 
 #def predict_fn(arr):
     #return predictions
