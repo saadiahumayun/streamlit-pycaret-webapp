@@ -166,13 +166,13 @@ if st.button('Explain with SHAP'):
     # %% Create SHAP explainer
     explainer = shap.TreeExplainer(gb_regressor)
     # Calculate shapley values for test data
-    shap_values = explainer.shap_values(features_df.iloc[0])
+    shap_value = explainer.shap_values(features_df.iloc[0])
 
     # %% Investigating the values (classification problem)
     # class 0 = contribution to class 1
     # class 1 = contribution to class 2
-    print(shap_values[1].shape)
-    shap_values
+    print(shap_value[1].shape)
+    shap_value
 
     # %% >> Visualize local predictions
     shap.initjs()
@@ -189,8 +189,8 @@ if st.button('Explain with SHAP'):
     # %% >> Visualize global features
     # Feature summary
     #shap.plots.bar(shap_values)
-    shap_value = shap.TreeExplainer(gb_regressor).shap_values(X_train)
-    st_shap(shap.summary_plot( X_train, shap_values=shap_value))
+    shap_values = shap.TreeExplainer(gb_regressor).shap_values(X_train)
+    st_shap(shap.summary_plot( X_train, shap_values))
 
 
     
