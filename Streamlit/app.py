@@ -10,6 +10,7 @@ import lime
 import lime.lime_tabular
 from lime.lime_tabular import LimeTabularExplainer
 import shap
+from interpret import show
 
 # %% Load and preprocess data
 data_loader = DataLoader()
@@ -195,9 +196,11 @@ if st.button('Explain with LIME'):
     top_features = exp.as_list()
     
     st.subheader('LIME Explanation:')
-    show(exp)
+    
     for feature in top_features:
         st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
+        
+    show (exp)
 
         #['id','clonesize','honeybee', 'bumbles', 'andrena', 'osmia', 'MaxOfUpperTRange', 'MinOfUpperTRange',
                                                                      #'AverageOfUpperTRange','MaxOfLowerTRange', 'MinOfLowerTRange','AverageOfLowerTRange',
