@@ -159,7 +159,7 @@ arr = features_df.to_numpy()
     #return predictions
 
 
-st.button('Explain with SHAP'):
+st.button('Explain with SHAP')
     
 
     # %% Create SHAP explainer
