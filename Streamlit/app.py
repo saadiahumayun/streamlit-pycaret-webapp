@@ -271,7 +271,8 @@ if st.button('Generate Counterfactuals'):
                                   total_CFs=5, 
                                   desired_range=[5600.0, 8900.0])
     # Visualize it
-    cf.visualize_as_dataframe(show_only_changes=True)
+    ins1=pd.DataFrame([cf.visualize_as_list()])
+    ins1
     #components.html(cf.as_html(), height=800)
 
     # %% Create feasible (conditional) Counterfactuals
