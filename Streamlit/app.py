@@ -272,7 +272,7 @@ if st.button('Generate Counterfactuals'):
                                   desired_range=[5600.0, 8900.0])
     # Visualize it
     instances= cf.visualize_as_dataframe(show_only_changes=True)
-    st.dataframe(instances, height = 800)
+    st.dataframe(instances)
     #components.html(cf.as_html(), height=800)
 
     # %% Create feasible (conditional) Counterfactuals
@@ -293,8 +293,7 @@ if st.button('Generate Counterfactuals'):
                                              ])
     # Visualize it
     all=cf1.visualize_as_dataframe(show_only_changes=True)
-    st.dataframe(all, height = 800)
-    #components.html(cf1.as_html(), height=800)
+    st.dataframe(all)
     
    
         
