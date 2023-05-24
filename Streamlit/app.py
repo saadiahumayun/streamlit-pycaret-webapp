@@ -274,11 +274,7 @@ if st.button('Generate Counterfactuals'):
 
 
     # %% Create feasible (conditional) Counterfactuals
-    features_to_vary=['fruitset',
-                  'seeds',
-                  'bumbles',
-                  'RainingDays'
-                  'fruitmass', 'clonesize']
+    features_to_vary=continuous_features
     #permitted_range={'avg_glucose_level':[50,250],
                 #'bmi':[18, 35]}
     # Now generating explanations using the new feature weights
