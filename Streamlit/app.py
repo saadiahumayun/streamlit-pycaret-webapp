@@ -13,6 +13,7 @@ import shap
 import streamlit.components.v1 as components
 from streamlit_shap import st_shap
 import dice_ml
+from dice_ml.utils import helpers
 
 # %% Load and preprocess data
 data_loader = DataLoader()
@@ -270,8 +271,9 @@ if st.button('Generate Counterfactuals'):
                                   total_CFs=5, 
                                   desired_range=[5600.0, 8900.0])
     # Visualize it
-    cf.visualize_as_dataframe(show_only_changes=True)
-    components.html(cf.as_html(), height=800)
+    instances= cf.visualize_as_dataframe(show_only_changes=True)
+    st.dataframe(instances)
+    #components.html(cf.as_html(), height=800)
 
     # %% Create feasible (conditional) Counterfactuals
     #permitted_range={'avg_glucose_level':[50,250],
@@ -290,8 +292,9 @@ if st.button('Generate Counterfactuals'):
                                   'RainingDays', 'AverageRainingDays','fruitset', 'fruitmass', 'seeds'
                                              ])
     # Visualize it
-    cf1.visualize_as_dataframe(show_only_changes=True)
-    components.html(cf1.as_html(), height=800)
+    all=cf1.visualize_as_dataframe(show_only_changes=True)
+    st.dataframe(all)
+    #components.html(cf1.as_html(), height=800)
     
    
         
