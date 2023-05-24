@@ -182,12 +182,10 @@ if st.button('Explain with SHAP'):
     expected_value = explainer.expected_value
     features_display = features_df.columns.tolist()
     st.subheader('SHAP Decision Plot:')
-    st.write ('The SHAP values for Gradient Boosting explain the margin output of the model') 
-    #which is the yield of wild blueberries in tonnes.\
-    #This summary plot replaces the typical bar chart of feature importance. It tells\
-              #us which features are most important, and also their range of effects over the dataset.\ 
-              #The color allows us match how changes in the value of a feature effect the change in the\
-              #production of blueberries.')
+    st.write ('A SHAP (SHapley Additive exPlanations) decision plot visualizes\
+    the contribution of each feature to the prediction of a specific instance or sample.\
+    It helps to explain how the presence or absence of certain features influences the models output.') 
+    
     st_shap(shap.decision_plot(expected_value, shap_value, features_display))
     #shap.force_plot(explainer.expected_value[0],
                # shap_values[0],
