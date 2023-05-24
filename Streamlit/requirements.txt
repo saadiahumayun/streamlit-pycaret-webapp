@@ -5,5 +5,5 @@ pycaret
 lime
 shap
 interpret
-plotly
+dice-ml
 streamlit-shap
