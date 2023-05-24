@@ -167,7 +167,7 @@ if st.button('Explain with SHAP'):
     explainer = shap.TreeExplainer(gb_regressor)
     # Calculate shapley values for test data
     shap_value = explainer.shap_values(features_df.iloc[0])
-    st.subheader ('SHAP Values)
+    st.subheader ('SHAP Values')
     # %% Investigating the values (classification problem)
     # class 0 = contribution to class 1
     # class 1 = contribution to class 2
