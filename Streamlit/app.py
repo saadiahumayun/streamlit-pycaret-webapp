@@ -294,7 +294,7 @@ if st.button('Generate Counterfactuals'):
     # Visualize it
     #cf1.visualize_as_dataframe(show_only_changes=True))
     ins=pd.DataFrame([cf1.visualize_as_list()])
-    st.text(ins)
+    st.markdown(ins)
     #components.html(cf1.as_html(), height=800)
 
    
