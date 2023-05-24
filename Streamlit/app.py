@@ -167,7 +167,7 @@ if st.button('Explain with SHAP'):
     explainer = shap.TreeExplainer(gb_regressor)
     # Calculate shapley values for test data
     shap_value = explainer.shap_values(features_df.iloc[0])
-
+    st.subheader ('SHAP Values)
     # %% Investigating the values (classification problem)
     # class 0 = contribution to class 1
     # class 1 = contribution to class 2
@@ -182,9 +182,12 @@ if st.button('Explain with SHAP'):
     expected_value = explainer.expected_value
     features_display = features_df.columns.tolist()
     st.subheader('SHAP Decision Plot:')
-    st.write ('A SHAP (SHapley Additive exPlanations) decision plot visualizes\
-    the contribution of each feature to the prediction of a specific instance or sample.\
-    It helps to explain how the presence or absence of certain features influences the models output.') 
+    st.write ("Processing the features you just entered from the sidebar, A SHAP decision plot visualizes\
+    the contribution of each feature to the prediction of blueberry yield.\
+    It helps to explain how the presence or absence of certain features influences the yield.\
+    The decision plot starts with a baseline reference value, often the average or median prediction of\
+    the model. Then, each feature's contribution is added or subtracted from the baseline value to calculate\
+    the final prediction. The plot displays the contributions of all the features combined.") 
     
     st_shap(shap.decision_plot(expected_value, shap_value, features_display))
     #shap.force_plot(explainer.expected_value[0],
