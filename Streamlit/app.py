@@ -238,7 +238,7 @@ if st.button('Explain with LIME'):
         
     # Display explainer HTML object
     components.html(exp.as_html(), height=800)
-    #exp.as_pyplot_figure()
+    
 
 if st.button('Generate Counterfactuals'):
     # Dataset
@@ -270,15 +270,14 @@ if st.button('Generate Counterfactuals'):
                                   total_CFs=5, 
                                   desired_range=[5600.0, 8900.0])
     # Visualize it
-    instance=cf.visualize_as_dataframe(show_only_changes=True)
-    st.dataframe(instance)
-
+    cf.visualize_as_dataframe(show_only_changes=True)
+    components.html(cf.as_html(), height=800)
 
     # %% Create feasible (conditional) Counterfactuals
     #permitted_range={'avg_glucose_level':[50,250],
                 #'bmi':[18, 35]}
     # Now generating explanations using the new feature weights
-    cf = explainer.generate_counterfactuals(input_datapoint, 
+    cf1 = explainer.generate_counterfactuals(input_datapoint, 
                                   total_CFs=3, 
                                   desired_range=[5600.0, 8900.0],
                                   #permitted_range=permitted_range,
@@ -291,8 +290,8 @@ if st.button('Generate Counterfactuals'):
                                   'RainingDays', 'AverageRainingDays','fruitset', 'fruitmass', 'seeds'
                                              ])
     # Visualize it
-    overall=cf.visualize_as_dataframe(show_only_changes=True)
-    st.dataframe(overall)
+    cf1.visualize_as_dataframe(show_only_changes=True)
+    components.html(cf1.as_html(), height=800)
     
    
         
