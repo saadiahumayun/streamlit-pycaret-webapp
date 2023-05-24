@@ -271,9 +271,8 @@ if st.button('Generate Counterfactuals'):
                                   total_CFs=5, 
                                   desired_range=[5600.0, 8900.0])
     # Visualize it
-    st_shap(cf.visualize_as_dataframe(show_only_changes=True))
-    #st.dataframe(instances)
-    #components.html(cf.as_html(), height=800)
+    cf.visualize_as_dataframe(show_only_changes=True)
+    components.html(cf.as_html(), height=800)
 
     # %% Create feasible (conditional) Counterfactuals
     #permitted_range={'avg_glucose_level':[50,250],
@@ -292,9 +291,9 @@ if st.button('Generate Counterfactuals'):
                                   'RainingDays', 'AverageRainingDays','fruitset', 'fruitmass', 'seeds'
                                              ])
     # Visualize it
-    st_shap(cf1.visualize_as_dataframe(show_only_changes=True))
-    #st.dataframe(all)
-    
+    cf1.visualize_as_dataframe(show_only_changes=True)
+    components.html(cf1.as_html(), height=800)
+
    
         
 
