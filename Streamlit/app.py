@@ -271,7 +271,7 @@ if st.button('Generate Counterfactuals'):
     features_to_vary=['fruitset',
                   'seeds',
                   'bumbles',
-                  'RainingDays''
+                  'RainingDays'
                   'fruitmass', 'clonesize']
     #permitted_range={'avg_glucose_level':[50,250],
                 #'bmi':[18, 35]}
