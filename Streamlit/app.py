@@ -245,7 +245,14 @@ if st.button('Generate Counterfactuals'):
     
     data_dice = dice_ml.Data(dataframe=data_loader.data, 
                          # For perturbation strategy
-                         continuous_features=features_df.columns.tolist(), 
+                         continuous_features=['clonesize', 'honeybee',
+                         'bumbles', 'andrena',
+                         'osmia', 'MaxOfUpperTRange',
+                         'MinOfUpperTRange', 'AverageOfUpperTRange',
+                         'MaxOfLowerTRange',
+                         'MinOfLowerTRange', 'AverageOfLowerTRange',
+                         'RainingDays', 'AverageRainingDays','fruitset', 'fruitmass', 'seeds'
+                                             ], 
                          outcome_name='yield')
     # Model
     gb_dice = dice_ml.Model(model=gb_regressor, 
