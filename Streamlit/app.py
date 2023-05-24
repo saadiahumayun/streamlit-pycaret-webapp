@@ -218,7 +218,7 @@ if st.button('Explain with LIME'):
     def predict_row(input_data):
         return gb_regressor.predict(input_data)
 
-    explainer = lime.lime_tabular.LimeTabularExplainer(X_train.values,  
+    explainer = lime.lime_tabular.LimeTabularExplainer(X_train.values,feature_names = X_train.columns,  
         mode='regression')
 
 
@@ -232,8 +232,8 @@ if st.button('Explain with LIME'):
     
     st.subheader('LIME Explanation:')
     
-    for feature in top_features:
-        st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
+    #for feature in top_features:
+        #st.write(f"Feature: {feature[0]}, Weight: {feature[1]}")
         
     # Display explainer HTML object
     components.html(exp.as_html(), height=800)
