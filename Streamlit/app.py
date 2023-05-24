@@ -242,12 +242,10 @@ if st.button('Explain with LIME'):
 
 if st.button('Generate Counterfactuals'):
     # Dataset
-    data_dice = dice_ml.Data(dataframe=data_loader.data, 
+    data_dice = dice_ml.Data(dataframe=data_loader.load_dataset(), 
                          # For perturbation strategy
-                         continuous_features=['age', 
-                                              'avg_glucose_level',
-                                              'bmi'], 
-                         outcome_name='stroke')
+                         continuous_features=X_train.columns.tolist(), 
+                         outcome_name='yield')
     # Model
     rf_dice = dice_ml.Model(model=rf, 
                         # There exist backends for tf, torch, ...
