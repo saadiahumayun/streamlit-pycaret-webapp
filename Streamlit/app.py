@@ -178,7 +178,7 @@ if st.button('Explain with SHAP'):
     shap.initjs()
     # Force plot
     prediction = predict(features_df)
-    st.write(print(f"The Gradient Boosting Regressor predicted: {prediction}"))
+    st.write('The Gradient Boosting Regressor predicted:' str(prediction)))
     expected_value = explainer.expected_value
     features_display = features_df.columns.tolist()
     st.subheader('SHAP Decision Plot:')
