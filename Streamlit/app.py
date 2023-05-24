@@ -278,7 +278,7 @@ if st.button('Generate Counterfactuals'):
     # Now generating explanations using the new feature weights
     cf = explainer.generate_counterfactuals(input_datapoint, 
                                   total_CFs=3, 
-                                  desired_class="opposite",
+                                  desired_range=[5600.0, 8900.0],
                                   #permitted_range=permitted_range,
                                   features_to_vary=features_to_vary)
     # Visualize it
