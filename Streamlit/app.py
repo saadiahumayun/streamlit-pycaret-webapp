@@ -291,7 +291,7 @@ if st.button('Generate Counterfactuals'):
                                   'RainingDays', 'AverageRainingDays','fruitset', 'fruitmass', 'seeds'
                                              ])
     # Visualize it
-    cf1.visualize_as_dataframe(show_only_changes=True)
+    st.write(cf1.visualize_as_dataframe(show_only_changes=True))
     #components.html(cf1.as_html(), height=800)
 
    
