@@ -242,7 +242,9 @@ if st.button('Explain with LIME'):
 
 if st.button('Generate Counterfactuals'):
     # Dataset
-    data_dice = dice_ml.Data(dataframe=data_loader.load_dataset(), 
+    df=pd.read_csv('train.csv')
+    dataframe=df
+    data_dice = dice_ml.Data(dataframe=df.drop('yield', axis=1), 
                          # For perturbation strategy
                          continuous_features=X_train.columns.tolist(), 
                          outcome_name='yield')
