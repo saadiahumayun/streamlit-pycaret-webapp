@@ -12,6 +12,7 @@ from lime.lime_tabular import LimeTabularExplainer
 import shap
 import streamlit.components.v1 as components
 from streamlit_shap import st_shap
+import dice_ml
 
 # %% Load and preprocess data
 data_loader = DataLoader()
@@ -239,8 +240,51 @@ if st.button('Explain with LIME'):
     components.html(exp.as_html(), height=800)
     #exp.as_pyplot_figure()
 
-        
-  
+if st.button('Generate Counterfactuals'):
+    # Dataset
+    data_dice = dice_ml.Data(dataframe=data_loader.data, 
+                         # For perturbation strategy
+                         continuous_features=['age', 
+                                              'avg_glucose_level',
+                                              'bmi'], 
+                         outcome_name='stroke')
+    # Model
+    rf_dice = dice_ml.Model(model=rf, 
+                        # There exist backends for tf, torch, ...
+                        backend="sklearn")
+    explainer = dice_ml.Dice(data_dice, 
+                         rf_dice, 
+                         # Random sampling, genetic algorithm, kd-tree,...
+                         method="random")
+
+    # %% Create explanation
+    # Generate CF based on the blackbox model
+    input_datapoint = features_df.iloc[0]
+    cf = explainer.generate_counterfactuals(input_datapoint, 
+                                  total_CFs=5, 
+                                  desired_range=[5600.0, 8900.0])
+    # Visualize it
+    cf.visualize_as_dataframe(show_only_changes=True)
+
+
+    # %% Create feasible (conditional) Counterfactuals
+    features_to_vary=['fruitset',
+                  'seeds',
+                  'bumbles',
+                  'RainingDays''
+                  'fruitmass', 'clonesize']
+    #permitted_range={'avg_glucose_level':[50,250],
+                #'bmi':[18, 35]}
+    # Now generating explanations using the new feature weights
+    cf = explainer.generate_counterfactuals(input_datapoint, 
+                                  total_CFs=3, 
+                                  desired_class="opposite",
+                                  #permitted_range=permitted_range,
+                                  features_to_vary=features_to_vary)
+    # Visualize it
+    cf.visualize_as_dataframe(show_only_changes=True)
+    
+   
         
 
     
