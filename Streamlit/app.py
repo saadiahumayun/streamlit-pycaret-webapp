@@ -245,7 +245,7 @@ if st.button('Generate Counterfactuals'):
     
     data_dice = dice_ml.Data(dataframe=data_loader.data, 
                          # For perturbation strategy
-                         continuous_features=X_train.columns, 
+                         continuous_features=features_df.columns.tolist(), 
                          outcome_name='yield')
     # Model
     gb_dice = dice_ml.Model(model=gb_regressor, 
