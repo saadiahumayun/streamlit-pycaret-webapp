@@ -274,7 +274,6 @@ if st.button('Generate Counterfactuals'):
 
 
     # %% Create feasible (conditional) Counterfactuals
-    features_to_vary=continuous_features
     #permitted_range={'avg_glucose_level':[50,250],
                 #'bmi':[18, 35]}
     # Now generating explanations using the new feature weights
@@ -282,7 +281,14 @@ if st.button('Generate Counterfactuals'):
                                   total_CFs=3, 
                                   desired_range=[5600.0, 8900.0],
                                   #permitted_range=permitted_range,
-                                  features_to_vary=features_to_vary)
+                                  features_to_vary=['clonesize', 'honeybee',
+                                  'bumbles', 'andrena',
+                                  'osmia', 'MaxOfUpperTRange',
+                                  'MinOfUpperTRange', 'AverageOfUpperTRange',
+                                  'MaxOfLowerTRange',
+                                  'MinOfLowerTRange', 'AverageOfLowerTRange',
+                                  'RainingDays', 'AverageRainingDays','fruitset', 'fruitmass', 'seeds'
+                                             ])
     # Visualize it
     cf.visualize_as_dataframe(show_only_changes=True)
     
