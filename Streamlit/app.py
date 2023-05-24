@@ -265,7 +265,7 @@ if st.button('Generate Counterfactuals'):
 
     # %% Create explanation
     # Generate CF based on the blackbox model
-    input_datapoint = features_df[0]
+    input_datapoint = features_df[0:1]
     cf = explainer.generate_counterfactuals(input_datapoint, 
                                   total_CFs=5, 
                                   desired_range=[5600.0, 8900.0])
