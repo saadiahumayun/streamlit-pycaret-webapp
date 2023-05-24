@@ -242,8 +242,7 @@ if st.button('Explain with LIME'):
 
 if st.button('Generate Counterfactuals'):
     # Dataset
-    #df=pd.read_csv('train.csv')
-    #dataframe=df
+    
     data_dice = dice_ml.Data(dataframe=data_loader.data, 
                          # For perturbation strategy
                          continuous_features=X_train.columns.tolist(), 
@@ -251,7 +250,7 @@ if st.button('Generate Counterfactuals'):
     # Model
     gb_dice = dice_ml.Model(model=gb_regressor, 
                         # There exist backends for tf, torch, ...
-                        backend="sklearn")
+                        backend="sklearn", model_type='regressor')
     explainer = dice_ml.Dice(data_dice, 
                          gb_dice, 
                          # Random sampling, genetic algorithm, kd-tree,...
