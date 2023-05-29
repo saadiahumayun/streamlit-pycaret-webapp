@@ -271,8 +271,8 @@ if st.button('Generate Counterfactuals'):
                                   total_CFs=5, 
                                   desired_range=[5600.0, 8900.0])
     # Visualize it
-    cf.visualize_as_dataframe(show_only_changes=True)
-    st.table(cf)
+    ins1=cf.visualize_as_dataframe(show_only_changes=True)
+    st.table(ins1)
     #components.html(cf.as_html(), height=800)
 
     # %% Create feasible (conditional) Counterfactuals
@@ -292,9 +292,9 @@ if st.button('Generate Counterfactuals'):
                                   'RainingDays', 'AverageRainingDays','fruitset', 'fruitmass', 'seeds'
                                              ])
     # Visualize it
-    cf1.visualize_as_dataframe(show_only_changes=True)
+    ins=cf1.visualize_as_dataframe(show_only_changes=True)
     #ins=pd.DataFrame([cf1.visualize_as_list()])
-    st.table(cf1)
+    st.table(ins)
     #components.html(cf1.as_html(), height=800)
 
    
